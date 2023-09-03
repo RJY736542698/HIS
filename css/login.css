@@ -1,0 +1,53 @@
+body{
+    background-image: url(../img/bg.jpg);
+}
+#con{
+    width: 500px;
+    height: 300px;
+    background-color: rgb(3, 63, 87);
+    margin: 0px auto;
+    margin-top: 200px;
+    opacity: 0.8;
+}
+#div1{
+    width: 100%;
+    height: 75px;
+    line-height: 75px;
+    color: white;
+    font-size: 44px;
+    font-family: "楷体";
+    font-weight: bold;
+    text-align: center;
+}
+.formdata_1{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    padding-left: 70px;
+}
+.formdata_2{
+    width: 80px;
+}
+.formdata_3{
+    width: 270px;
+    height: 20px;
+}
+#sel1{
+    width: 278px;
+    height: 25px;
+}
+#div2{
+    width: 100%;
+    height: 60px;
+    text-align: center;
+    line-height: 60px;
+}
+#loginBtn{
+    width: 120px;
+    height: 40px;
+    border-radius: 5px;
+    background-color:skyblue;
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+}

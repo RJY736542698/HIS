@@ -1,0 +1,518 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>门诊挂号</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="resources/css/jquery-ui-themes.css" type="text/css" rel="stylesheet"/>
+    <link href="resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="data/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="files/门诊挂号/styles.css" type="text/css" rel="stylesheet"/>
+    <script src="resources/scripts/jquery-1.7.1.min.js"></script>
+    <script src="resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
+    <script src="resources/scripts/prototypePre.js"></script>
+    <script src="data/document.js"></script>
+    <script src="resources/scripts/prototypePost.js"></script>
+    <script src="files/门诊挂号/data.js"></script>
+    <script type="text/javascript">
+      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+    </script>
+    <!-- vue axios -->
+     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+     <style>
+      a{
+        text-decoration: none;
+      }
+      a:hover{
+          color: blue;
+        }
+     </style>
+     
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- Unnamed (矩形) -->
+      <div id="u9" class="ax_default box_3">
+        <div id="u9_div" class=""></div>
+      </div>
+
+      <!-- Unnamed (门诊挂号) -->
+      <div id="u10" class="ax_default link_button">
+        <div id="u10_div" class=""></div>
+        <div id="u10_text" class="text ">
+          <p><a>门诊挂号</a></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (门诊收费) -->
+      <div id="u11" class="ax_default link_button">
+        <div id="u11_div" class=""></div>
+        <div id="u11_text" class="text">
+          <p><a href="门诊收费.html">门诊收费</a></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (门诊退号) -->
+      <div id="u12" class="ax_default link_button">
+        <div id="u12_div" class=""></div>
+        <div id="u12_text" class="text ">
+          <p><a href="门诊退号.html">门诊退号</a></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u13" class="ax_default box_2">
+        <div id="u13_div" class=""></div>
+      </div>
+
+      <!-- Unnamed (挂号) -->
+      <div id="u14" class="ax_default label">
+        <div id="u14_div" class=""></div>
+        <div id="u14_text" class="text ">
+          <p><span>挂&nbsp; 号</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (患者编号) -->
+      <div id="u15" class="ax_default label">
+        <div id="u15_div" class=""></div>
+        <div id="u15_text" class="text ">
+          <p><span>患者编号 :</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (身份证号) -->
+      <div id="u16" class="ax_default label">
+        <div id="u16_div" class=""></div>
+        <div id="u16_text" class="text ">
+          <p><span>身份证号 :</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (挂号科室) -->
+      <div id="u17" class="ax_default label">
+        <div id="u17_div" class=""></div>
+        <div id="u17_text" class="text ">
+          <p><span>挂号科室 :</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (组合) -->
+      <div id="u18" class="ax_default" data-left="276" data-top="76" data-width="39" data-height="18">
+        <!-- Unnamed (姓名) -->
+        <div id="u19" class="ax_default label">
+          <div id="u19_div" class=""></div>
+          <div id="u19_text" class="text ">
+            <p><span>姓名 :</span></p>
+          </div>
+          </div>
+        </div>
+
+      <!-- Unnamed (文本框) 患者编号-->
+      <div id="u20" class="ax_default text_field">
+        <input id="u20_input" type="text" value="{{case_number}}" disabled="disabled" v-model="case_number" />
+      </div>
+
+      <!-- Unnamed (文本框) 身份证号-->
+      <div id="u21" class="ax_default text_field">
+        <input id="u21_input" type="text" value="" v-model="card_number"/>
+      </div>
+
+      <!-- Unnamed (文本框) 姓名-->
+      <div id="u22" class="ax_default text_field">
+        <input id="u22_input" type="text" value="" v-model="real_name" />
+      </div>
+
+      <!-- Unnamed (下拉列表框) 挂号科室-->
+      <div id="u23" class="ax_default droplist" >
+        <select id="u23_input" v-model="deptment_id">
+          <option value="-1">----请选择----</option>
+          <option v-for="item in department" :value="item.id" >{{item.deptName}}</option>
+        </select>
+      </div>
+
+      <!-- Unnamed(性别) -->
+      <div id="u24" class="ax_default label">
+        <div id="u24_div" class=""></div>
+        <div id="u24_text" class="text ">
+          <p><span>性别 :</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (单选按钮) 性别-->
+      <div id="u25" class="ax_default radio_button">
+        <label for="u25_input" style="position: absolute;">
+          <div id="u25_text" class="text ">
+            <p><span>男</span></p>
+          </div>
+        </label>
+        <input id="u25_input" type="radio" value="男" name="gender" v-model="gender" />
+      </div>
+
+      <!-- Unnamed (单选按钮) -->
+      <div id="u26" class="ax_default radio_button">
+        <label for="u26_input" style="position: absolute;">
+          <div id="u26_text" class="text ">
+            <p><span>女</span></p>
+          </div>
+        </label>
+        <input id="u26_input" type="radio" value="女" name="gender" v-model="gender"/>
+      </div>
+
+      <!-- Unnamed (家庭住址) -->
+      <div id="u27" class="ax_default label">
+        <div id="u27_div" class=""></div>
+        <div id="u27_text" class="text ">
+          <p><span>家庭住址 :</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u28" class="ax_default label">
+        <div id="u28_div" class=""></div>
+        <div id="u28_text" class="text ">
+          <p><span>年龄 :</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed 年龄(文本框) -->
+      <div id="u29" class="ax_default text_field">
+        <input id="u29_input" type="number" value="" v-model="age" /> {{fullAge}}
+      </div>
+
+      <!-- Unnamed 家庭(文本框) -->
+      <div id="u30" class="ax_default text_field">
+        <input id="u30_input" type="text" value="" v-model="home_address" />
+      </div>
+
+      <!-- Unnamed (看诊医生) -->
+      <div id="u31" class="ax_default label">
+        <div id="u31_div" class=""></div>
+        <div id="u31_text" class="text ">
+          <p><span>看诊医生 :</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (下拉列表框)看诊医生 -->
+      <div id="u32" class="ax_default droplist">
+        <select id="u32_input" v-model="employee_id" @click="deptment">
+          <option value="-1">----请选择----</option>
+          <option v-for="item in employeeall" :value="item.id">{{item.realname}}</option>
+        </select>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u33" class="ax_default label">
+        <div id="u33_div" class=""></div>
+        <div id="u33_text" class="text ">
+          <p><span>出生日期 :</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u34" class="ax_default label">
+        <div id="u34_div" class=""></div>
+        <div id="u34_text" class="text ">
+          <p><span>挂号级别 :</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u35" class="ax_default label">
+        <div id="u35_div" class=""></div>
+        <div id="u35_text" class="text ">
+          <p><span>挂号日期 :</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (文本框)出生日期 -->
+      <div id="u36" class="ax_default text_field">
+        <input id="u36_input" type="date" value="" v-model="birthdate"/>
+      </div>
+
+      <!-- Unnamed (文本框)   挂号日期 -->
+      <div id="u37" class="ax_default text_field">
+        <input id="u37_input" type="text" value="{{register_date}}" v-model="register_date" disabled="disabled"/>
+      </div>
+
+      <!-- Unnamed (挂号级别) -->
+      <div id="u38" class="ax_default droplist">
+        <select id="u38_input" v-model="regist_level_id" >
+          <option value="-1">----请选择----</option>
+          <option v-for="item in regist_level" :value="item.id" @click="registlevelid">{{item.registName }}</option>
+        </select>
+      </div>
+
+      <!-- Unnamed (是否需要病历本) -->
+      <div id="u39" class="ax_default label">
+        <div id="u39_div" class=""></div>
+        <div id="u39_text" class="text ">
+          <p><span>是否需要病历本 :</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (单选按钮) 是否需要病历本 -->
+      <div id="u40" class="ax_default radio_button">
+        <label for="u40_input" style="position: absolute;">
+          <div id="u40_text" class="text ">
+            <p><span>是</span></p>
+          </div>
+        </label>
+        <input id="u40_input" type="radio" value="是" name="book"  v-model="is_book"/>
+      </div>
+
+      <!-- Unnamed (单选按钮) 是否需要病历本 -->
+      <div id="u41" class="ax_default radio_button">
+        <label for="u41_input" style="position: absolute;">
+          <div id="u41_text" class="text ">
+            <p><span>否</span></p>
+          </div>
+        </label>
+        <input id="u41_input" type="radio" value="否" name="book"  v-model="is_book"/>
+      </div>
+
+      <!-- Unnamed (应收金额) -->
+      <div id="u42" class="ax_default label">
+        <div id="u42_div" class=""></div>
+        <div id="u42_text" class="text ">
+          <p><span>应收金额 :</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (11) -->
+      <div id="u43" class="ax_default label">
+        <div id="u43_div" class=""></div>
+        <div id="u43_text" class="text ">
+          <p><span v-model="regist_fee"> {{fullfee}}</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u44" class="ax_default primary_button">
+        <div id="u44_div" class=""></div>
+        <div id="u44_text" class="text ">
+          <p><span @click="regist">挂&nbsp; &nbsp; &nbsp; &nbsp; 号</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u45" class="ax_default box_2">
+        <div id="u45_div" class=""></div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u46" class="ax_default label">
+        <div id="u46_div" class=""></div>
+        <div id="u46_text" class="text ">
+          <p><span>患 者 信 息</span></p>
+        </div>
+      </div>
+    
+      <table width="90%" border="1" cellpadding="8" cellspacing="0" style="margin: auto; margin-top: 310px; margin-left: 20px; font-family:'宋体'; ">
+        <tr>
+            <th>患者编号</th>
+            <th>姓名</th>
+            <th>性别</th>
+            <th>出生日期</th>
+            <th>身份证号</th>
+            <th>挂号级别</th>
+            <th>挂号日期</th>
+            <th>挂号费用</th>
+            <th>看诊日期</th>
+            <th>看诊科室</th>
+            <th>看诊医生</th>
+            <th>是否已诊</th>
+            <th>是否需要病历本</th>
+            <th>状态</th>
+        </tr>
+        <tr v-for="registers in registers" >
+            <td>{{registers.caseNumber}}</td>
+            <td>{{registers.realName}}</td>
+            <td>{{registers.gender}}</td>
+            <td>{{registers.birthdate}}</td>
+            <td>{{registers.cardNumber}}</td>
+            <td>{{registers.registLevel.registName}}</td>
+            <td>{{registers.registerDate}}</td>
+            <td>{{registers.registMoney}}</td>
+            <td>{{registers.visitDate}}</td>
+            <td>{{registers.department.deptName}}</td>
+            <td>{{registers.employee.realname}}</td>
+            <td>{{registers.visitState|str}}</td>
+            <td>{{registers.isBook}}</td>
+            <td>{{registers.visitState|visitstate}}</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+  <script>
+    let vm=new Vue({
+      el:'#base',
+      data:{
+        case_number:'',  //患者编号
+        real_name:'',  //患者姓名
+        card_number:'', //身份证号
+        deptment_id:'-1', //  挂号科室id
+        gender:'',  //患者性别
+        age:'',  //`患者年龄
+        birthdate:'',  //患者出生日期
+        home_address:'', //患者家庭住址
+        register_date:'',  //患者挂号日期
+        is_book:'是',  //是否需要病历本
+        regist_fee:'',  //挂号费用
+        visitState:'',//看诊状态
+        regist_level_id:'-1',  //挂号级别id
+        employee_id:'-1', //看诊医生id
+        register:{},   //接收患者编号 挂号日期对象
+        registers:[],  //接收全部信息对象  
+        regist_level: [],   //接收register_level的集合  查找所有的挂号级别
+        department:[],    //接收department的集合  查找所有的挂号科室
+        employeeall:[]    //接收employeeall的集合  查找所有的看诊医生
+      }, 
+      created(){//页面初始化时候出发的
+        console.log(JSON.parse(sessionStorage.loginUser).realname);
+        var doctorname = JSON.parse(sessionStorage.loginUser).realname;
+        axios.get('http://localhost:8092/regist-level-querylevel'
+        ).then(response=>{
+          console.log(response.data);
+          this.regist_level=response.data;
+        }).catch(function(err){
+          console.log(err);
+        }),
+        axios.get('http://localhost:8092/department-querydeptname'
+        ).then(response=>{
+          console.log(response.data);
+          this.department=response.data;
+        }).catch(function(err){
+          console.log(err);
+        }),
+        axios.get('http://localhost:8092/register-case-number'
+        ).then(response=>{
+          console.log(response.data);
+          this.register=response.data;
+          this.case_number=this.register.caseNumber
+          this.register_date=this.register.registerDate
+          console.log(this.case_number)
+          console.log(this.register_date)
+          console.log(this.register)
+        }).catch(function(err){
+          console.log(err);
+        }),
+        axios.get('http://localhost:8092/register-queryall'
+        ).then(response=>{
+          console.log(response.data);
+          this.registers=response.data;
+        }).catch(function(err){
+          console.log(err);
+        })
+        
+    },
+    methods:{
+      registlevelid(){
+        console.log(this.regist_level_id)
+        axios.post('http://localhost:8092/regist-level-querymoney',{
+          id:this.regist_level_id
+        })
+        .then(response=>{
+          console.log(response.data);
+          this.regist_fee=response.data;
+          console.log(this.regist_fee);
+        }).catch(function(err){
+          console.log(err);
+        })},
+        deptment(){
+          console.log(this.regist_level_id);
+          console.log(this.deptment_id);
+          axios.post('http://localhost:8092/employee_queryrealname',{
+            deptmentId:this.deptment_id,  
+            registLevelId:this.regist_level_id
+          })
+          .then(response=>{
+          console.log(response.data);
+          this.employeeall=response.data;
+        }).catch(function(err){
+          console.log(err);
+        })
+        },
+      
+      regist(){
+        axios.post('http://localhost:8092/register-update',{
+          realName:this.real_name,
+          gender:this.gender,
+          age:this.age,
+          birthdate:this.birthdate,
+          cardNumber:this.card_number,
+          homeAddress:this.home_address,
+          deptmentId:this.deptment_id,
+          employeeId:this.employee_id,
+          registLevelId:this.regist_level_id,
+          isBook:this.is_book,
+          registerDate:this.register_date,
+          registMoney:this.regist_fee,
+          caseNumber:this.case_number
+        })
+        .then(response=>{
+          console.log(response.data);
+          this.registers=response.data;
+          window.alert("挂号成功!")
+        })
+        .catch(function(err){
+          console.log(err);
+        }) 
+      }
+
+      
+    },
+    filters:{
+      str(value){
+        if(value==1){
+          return "否"
+        }
+      },
+      visitstate(value){
+        switch(value){
+          case 1:
+            return "已挂号";
+            break;
+          case 2:
+            return "医生接诊";
+            break;
+          case 3:
+            return "看诊结束";
+            break;
+          case 4:
+            return "已退号";
+            break;
+          default:
+            return "";
+            break;
+        }
+      }
+    },
+    computed:{
+        fullAge(){  
+          const birthstr=this.birthdate
+          let birthdays=new Date(birthstr.replace(/-/g,"/"));
+          console.log("生日转换时间",birthdays);
+          let date=new Date();
+          this.age=date.getFullYear()-birthdays.getFullYear();
+          console.log(this.age)
+          return this.age;
+        },
+        fullfee(){
+          if(this.is_book=='是'){
+            this.regist_fee=this.regist_fee+10;
+            return this.regist_fee;
+          }else{
+            this.regist_fee=this.regist_fee-10;
+            return this.regist_fee;
+          }
+        }
+    }
+  })
+  </script>
+</html>

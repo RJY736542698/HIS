@@ -1,0 +1,458 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>门诊收费</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="门诊退号&收费css/resources/css/jquery-ui-themes.css" type="text/css" rel="stylesheet"/>
+    <link href="门诊退号&收费css/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="门诊退号&收费css/data/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="门诊退号&收费css/files/门诊收费/styles.css" type="text/css" rel="stylesheet"/>
+    <script src="门诊退号&收费css/resources/scripts/jquery-1.7.1.min.js"></script>
+    <script src="门诊退号&收费css/resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
+    <script src="门诊退号&收费css/resources/scripts/prototypePre.js"></script>
+    <script src="门诊退号&收费css/data/document.js"></script>
+    <script src="门诊退号&收费css/resources/scripts/prototypePost.js"></script>
+    <script src="门诊退号&收费css/files/门诊收费/data.js"></script>
+    <script type="text/javascript">
+      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+    </script>
+      <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+      <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+      <style>
+        a{
+          text-decoration: none;
+        }
+        a:hover{
+          color: blue;
+        }
+        .yingjiaofei:hover{
+          cursor: pointer;
+        }
+        #u60_div {
+        border-width:0px;
+        position:absolute;
+        left: 100px;
+        top:300px;
+        width:140px;
+        height:38px;
+        background:inherit;
+        background-color:rgba(22, 155, 213, 1);
+        border:none;
+        border-radius:5px;
+        -moz-box-shadow:none;
+        -webkit-box-shadow:none;
+        box-shadow:none;
+        font-family:'华文中宋 Bold', '华文中宋 Regular', '华文中宋';
+        font-weight:700;
+        font-style:normal;
+      }
+        #u60 {
+  border-width:0px;
+  position:absolute;
+  left:607px;
+  top:317px;
+  width:140px;
+  height:38px;
+  font-family:'华文中宋 Bold', '华文中宋 Regular', '华文中宋';
+  font-weight:700;
+  font-style:normal;
+}
+#u60_text {
+  border-width:0px;
+  position:absolute;
+  left:102px;
+  top:310px;
+  width:136px;
+  word-wrap:break-word;
+}
+       </style>
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- Unnamed (矩形) -->
+      <div id="u23" class="ax_default box_3">
+        <div id="u23_div" class=""></div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u24" class="ax_default link_button">
+        <div id="u24_div" class=""></div>
+        <div id="u24_text" class="text ">
+          <p><a href="门诊挂号.html">门诊挂号</a></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u25" class="ax_default link_button">
+        <div id="u25_div" class=""></div>
+        <div id="u25_text" class="text ">
+          <p><a>门诊收费</a></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u26" class="ax_default link_button">
+        <div id="u26_div" class=""></div>
+        <div id="u26_text" class="text ">
+          <p><a href="门诊退号.html">门诊退号</a></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u27" class="ax_default box_2">
+        <div id="u27_div" class=""></div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u28" class="ax_default label">
+        <div id="u28_div" class=""></div>
+        <div id="u28_text" class="text ">
+          <p><span>患者基本信息</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u29" class="ax_default label">
+        <div id="u29_div" class=""></div>
+        <div id="u29_text" class="text ">
+          <p><span>患者编号 : {{register.caseNumber}}</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u30" class="ax_default label">
+        <div id="u30_div" class=""></div>
+        <div id="u30_text" class="text ">
+          <p><span>身份证号 : {{register.cardNumber}}</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u31" class="ax_default label">
+        <div id="u31_div" class=""></div>
+        <div id="u31_text" class="text ">
+          <p><span>看诊科室 : {{register.department.deptName}}</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (组合) -->
+      <div id="u32" class="ax_default" data-left="280" data-top="155" data-width="39" data-height="18">
+
+        <!-- Unnamed (矩形) -->
+        <div id="u33" class="ax_default label">
+          <div id="u33_div" class=""></div>
+          <div id="u33_text" class="text ">
+            <p><span>姓名 : {{register.realName}}</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u34" class="ax_default label">
+        <div id="u34_div" class=""></div>
+        <div id="u34_text" class="text ">
+          <p><span>性别 :  {{register.gender}}</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u35" class="ax_default label">
+        <div id="u35_div" class=""></div>
+        <div id="u35_text" class="text ">
+          <p><span>挂号级别 : {{register.registLevel.registName}}</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u36" class="ax_default label">
+        <div id="u36_div" class=""></div>
+        <div id="u36_text" class="text ">
+          <p><span>看诊医生 :  {{register.employee.realname}}</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u37" class="ax_default label">
+        <div id="u37_div" class=""></div>
+        <div id="u37_text" class="text ">
+          <p><span>是否有病历本 :  {{register.isBook}}</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u38" class="ax_default label">
+        <div id="u38_div" class=""></div>
+        <div id="u38_text" class="text ">
+          <p><span>看诊日期 : {{register.visitDate}}</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u39" class="ax_default label">
+        <div id="u39_div" class=""></div>
+        <div id="u39_text" class="text ">
+          <p><span>是否已诊 : {{register.visitState|str}}</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u40" class="ax_default label">
+        <div id="u40_div" class=""></div>
+        <div id="u40_text" class="text ">
+          <p><span>挂号费用 :   {{register.registMoney}}</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u41" class="ax_default label">
+        <div id="u41_div" class=""></div>
+        <div id="u41_text" class="text ">
+          <p><span>出生日期 : {{register.birthdate}}</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u42" class="ax_default label">
+        <div id="u42_div" class=""></div>
+        <div id="u42_text" class="text ">
+          <p><span>挂号状态 :  {{register.visitState|visitstate}}</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u43" class="ax_default label">
+        <div id="u43_div" class=""></div>
+        <div id="u43_text" class="text ">
+          <p><span>患者编号 :</span>
+            <input type="text" style="width: 260px;" v-model="caseNumber">
+            <button @click="keyupclick">查询</button>
+          </p>
+        </div>
+      </div>
+
+
+      <!-- Unnamed (矩形) -->
+      <div id="u45" class="ax_default box_2">
+        <div id="u45_div" class=""></div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u46" class="ax_default label">
+        <div id="u46_div" class=""></div>
+        <div id="u46_text" class="text ">
+          <p><span>缴费目录</span></p>
+        </div>
+      </div>
+      <div style="width: 500px; height: 100%;" >
+        <form action="">
+          <table width="100%" border="1" cellpadding="10" cellspacing="0"
+          style="margin: auto; margin-top: 420px; margin-left: 20px; font-family:'宋体';" class="mytable">
+            <tr>
+              <th>缴费项目</th>
+              <th>应收金额</th>
+              <th>缴费状态</th>
+            </tr>
+            <tr>
+              <td v-show="show1">挂号费</td>
+              <td>{{register.registMoney}}</td>
+              <td>未缴费</td>
+            </tr>
+            <tr v-for="(item,index) in check_request">
+              <td v-show="false" style="display:none">{{list[index]=item.medicalTechnology.techPrice}}</td>
+              <td>{{item.medicalTechnology.techName}}</td>
+              <td>{{item.medicalTechnology.techPrice}}</td>
+              <td>{{item.checkState}}</td>
+            </tr>
+            <tr v-for="(item,index) in inspection_request">
+              <td v-show="false" style="display:none" >{{list1[index]=item.medicalTechnology.techPrice}}</td>
+              <td>{{item.medicalTechnology.techName}}</td>
+              <td>{{item.medicalTechnology.techPrice}}</td>
+              <td>{{item.inspectionState}}</td>
+            </tr>
+            
+        </table>
+        </form> 
+      </div> 
+      <!-- Unnamed (矩形) -->
+      <div id="u60" class="ax_default primary_button">
+        
+        <div id="u60_div" class="">
+        
+        </div>
+        <div id="u60_text" class="text ">
+          <p><span @click="jiaofei">缴&nbsp; &nbsp; &nbsp; &nbsp;费</span></p>
+        </div>
+      </div> 
+            <!-- Unnamed (矩形) -->
+            <div id="u47" class="ax_default label">
+              <div id="u47_div" class=""></div>
+              <div id="u47_text" class="text ">
+                <p><span class="yingjiaofei" @click="cc">应缴费 :{{totle}}</span></p>
+              </div>
+            </div>
+    
+    </div>
+   
+  </body>
+  <script>
+    let vm=new Vue({
+      el:'#base',
+      data:{
+        caseNumber:'',
+        id:'',
+        totle:0,
+        register:{
+                employee:{
+                  realname:''
+                },
+                department:{
+                  deptName:''
+                },
+                registLevel:{
+                  registName:''
+                }
+              },
+          check_request:[],
+          inspection_request:[],
+          list:[],
+          list1:[],
+          show1:false
+      },
+      methods:{
+        keyupclick(){
+          axios.post('http://localhost:8092/register-queryCaseNumber',{
+            caseNumber:this.caseNumber
+          })
+          .then(response=>{console.log(this.caseNumber);
+            console.log(response.data);
+            this.register=response.data;
+            this.id=this.register.id;
+            console.log(this.id);
+          })
+          .catch(function(err){
+            console.log(err);
+          })
+          axios.post('http://localhost:8092/check-request-query',{
+            caseNumber:this.caseNumber
+          })
+          .then(response=>{
+            this.check_request=response.data;
+            console.log(this.check_request);
+           
+            console.log(this.list)
+          })
+          .catch(function(err){
+            console.log(err);
+          })
+          axios.post('http://localhost:8092/inspection-request-query',{
+            caseNumber:this.caseNumber
+          })
+          .then(response=>{
+            this.inspection_request=response.data;
+            console.log(this.inspection_request);
+            console.log(this.list1)
+          })
+          .catch(function(err){
+            console.log(err);
+          })
+          this.show1=true;
+        },
+        jiaofei(){
+          axios.post('http://localhost:8092/inspection-request-update',{
+            id:this.id
+          })
+          .then(response=>{
+            window.alert("缴费成功!")
+          })
+          .catch(function(err){
+            console.log(err);
+          })
+          axios.post('http://localhost:8092/check-request-update',{
+            id:this.id
+          })
+          .then(response=>{
+          })
+          .catch(function(err){
+            console.log(err);
+          })
+          axios.post('http://localhost:8092/check-request-query',{
+            caseNumber:this.caseNumber
+          })
+          .then(response=>{
+            this.check_request=response.data;
+            console.log(this.check_request);
+            
+          })
+          .catch(function(err){
+            console.log(err);
+          })
+          axios.post('http://localhost:8092/inspection-request-query',{
+            caseNumber:this.caseNumber
+          })
+          .then(response=>{
+            this.inspection_request=response.data;
+            console.log(this.inspection_request);
+            
+          })
+          .catch(function(err){
+            console.log(err);
+          })  
+
+        },
+        cc(){ 
+        var sum=0;
+          for(var i=0;i<this.list.length;i++){
+              console.log(this.list[i]);
+              sum+=parseInt(this.list[i]);
+          }
+          var sum1=0;
+          for(var i=0;i<this.list1.length;i++){
+              sum1+=parseInt(this.list1[i]);
+          }
+          var sum2=0;
+          sum2=this.register.registMoney;
+          this.totle=sum+sum1+sum2;
+          console.log(this.totle);
+        }
+      },
+      filters:{
+      str(value){
+        if(value==1 |value==4){
+          return "否"
+        }
+        if(value==2 | value==3){
+          return "是"
+        }
+      },
+      visitstate(value){
+        switch(value){
+          case 1:
+            return "已挂号";
+            break;
+          case 2:
+            return "医生接诊";
+            break;
+          case 3:
+            return "看诊结束";
+            break;
+          case 4:
+            return "已退号";
+            break;
+          default:
+            return "";
+            break;
+        }
+      }
+    }
+    
+      
+
+    })
+    
+  </script>
+</html>

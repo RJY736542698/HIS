@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天泰云HIS医院管理系统</title>
+    <link href="./css/login.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div id="con">
+        <div id="div1">天泰云HIS医院管理系统</div>
+        <div class="formdata_1">
+            <div class="formdata_2">
+                用户名：
+            </div>
+            <div>
+                <input type="text" class="formdata_3" v-model="realname"/>
+            </div>
+        </div>
+        <div class="formdata_1">
+            <div class="formdata_2">
+                密&nbsp;&nbsp;&nbsp;&nbsp;码：
+            </div>
+            <div>
+                <input type="password" class="formdata_3" v-model="password"/>
+            </div>
+        </div>
+        <div class="formdata_1">
+            <div class="formdata_2">
+                角&nbsp;&nbsp;&nbsp;&nbsp;色：
+            </div>
+            <div>
+                <select class="formdata_2" id="sel1" v-model="role">
+                    <option value="-1">-----请选择-----</option>
+                    <option value="门诊管理员">门诊管理员</option>
+                    <option value="医生管理员">医生管理员</option>
+                </select>
+            </div>
+        </div>
+            <div id="div2">
+                <button type="button" id="loginBtn" @click="login">登&nbsp;&nbsp;&nbsp;&nbsp;录</button>
+            </div>
+        
+           
+    </div>
+</body>
+<script>
+let vm=new Vue({
+    el:'#con',
+    data:{
+        realname:'',
+        password:'',
+        role:'-1'
+    },
+    methods:{
+            login(){
+                axios.post('http://localhost:8092/login',{
+                    realname:this.realname,
+                    password:this.password,
+                    role:this.role
+                })
+                .then(response=>{
+                    console.log(response.data);
+                    //登陆成功
+                    if(response.data!=""){
+                        var loginUser = JSON.stringify(response.data);
+                        sessionStorage.loginUser = loginUser;                   
+                        if(this.role=="门诊管理员"){
+                            location.href="门诊挂号.html";
+                        }
+                        if(this.role=="医生管理员"){
+                            location.href="门诊病历.html";
+                        }
+                    }else{
+                        location.reload();
+                    }
+                })
+                .catch(function(err){
+                    console.log(err);
+                })
+            }
+        }
+
+})
+</script>
+</html>

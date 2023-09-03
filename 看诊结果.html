@@ -1,0 +1,355 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>看诊结果</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <link href="医生确诊css/resources/css/jquery-ui-themes.css" type="text/css" rel="stylesheet"/>
+    <link href="医生确诊css/resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="医生确诊css/data/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="医生确诊css/files/看诊结果/styles.css" type="text/css" rel="stylesheet"/>
+    <script src="医生确诊css/resources/scripts/jquery-1.7.1.min.js"></script>
+    <script src="医生确诊css/resources/scripts/jquery-ui-1.8.10.custom.min.js"></script>
+    <script src="医生确诊css/resources/scripts/prototypePre.js"></script>
+    <script src="医生确诊css/data/document.js"></script>
+    <script src="医生确诊css/resources/scripts/prototypePost.js"></script>
+    <script src="医生确诊css/files/看诊结果/data.js"></script>
+    <script type="text/javascript">
+      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <style>
+      a{
+       text-decoration: none;
+     }
+     a:hover{
+       color: blue;
+     }
+  
+   </style>
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- Unnamed (矩形) -->
+      <div id="u37" class="ax_default box_2">
+        <div id="u37_div" class=""></div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u38" class="ax_default label">
+        <div id="u38_div" class=""></div>
+        <div id="u38_text" class="text ">
+          <p><span>患者信息</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u39" class="ax_default label">
+        <div id="u39_div" class=""></div>
+        <div id="u39_text" class="text ">
+          <p><span>患者编号 :{{register.caseNumber}}</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u40" class="ax_default label">
+        <div id="u40_div" class=""></div>
+        <div id="u40_text" class="text ">
+          <p><span>身份证号 : {{register.cardNumber}}</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u41" class="ax_default label">
+        <div id="u41_div" class=""></div>
+        <div id="u41_text" class="text ">
+          <p><span>看诊科室 :{{register.department.deptName}}</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (组合) -->
+      <div id="u42" class="ax_default" data-left="280" data-top="155" data-width="39" data-height="18">
+
+        <!-- Unnamed (矩形) -->
+        <div id="u43" class="ax_default label">
+          <div id="u43_div" class=""></div>
+          <div id="u43_text" class="text ">
+            <p><span>姓名 :{{register.realName}}</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u44" class="ax_default label">
+        <div id="u44_div" class=""></div>
+        <div id="u44_text" class="text ">
+          <p><span>性别 : {{register.gender}}</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u45" class="ax_default label">
+        <div id="u45_div" class=""></div>
+        <div id="u45_text" class="text ">
+          <p><span>挂号级别 : {{register.registLevel.registName}}</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u46" class="ax_default label">
+        <div id="u46_div" class=""></div>
+        <div id="u46_text" class="text ">
+          <p><span>看诊医生 :{{register.employee.realname}}</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u47" class="ax_default label">
+        <div id="u47_div" class=""></div>
+        <div id="u47_text" class="text ">
+          <p><span>是否有病历本 :{{register.isBook}}</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u48" class="ax_default label">
+        <div id="u48_div" class=""></div>
+        <div id="u48_text" class="text ">
+          <p><span>看诊日期 :{{register.visitDate}}</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u49" class="ax_default label">
+        <div id="u49_div" class=""></div>
+        <div id="u49_text" class="text ">
+          <p><span>是否已诊 :{{register.visitState|str}}</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u50" class="ax_default label">
+        <div id="u50_div" class=""></div>
+        <div id="u50_text" class="text ">
+          <p><span>挂号费用 :{{register.registMoney}}</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u51" class="ax_default label">
+        <div id="u51_div" class=""></div>
+        <div id="u51_text" class="text ">
+          <p><span>出生日期 :{{register.birthdate}}</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u52" class="ax_default label">
+        <div id="u52_div" class=""></div>
+        <div id="u52_text" class="text ">
+          <p><span>挂号状态 :{{register.visitState|visitstate}}</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u53" class="ax_default label">
+        <div id="u53_div" class=""></div>
+        <div id="u53_text" class="text ">
+          <p><span>患者编号 :</span>
+            <input type="text" style="width: 260px;" v-model="caseNumber">
+            <button @click="keyupclick">查询</button>
+          </p>
+        </div>
+      </div>
+
+      <!-- Unnamed (文本框) -->
+      <!-- <div id="u54" class="ax_default text_field">
+        <input id="u54_input" type="text" value=""/>
+      </div> -->
+
+      <!-- Unnamed (矩形) -->
+      <div id="u55" class="ax_default box_3">
+        <div id="u55_div" class=""></div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u56" class="ax_default link_button">
+        <div id="u56_div" class=""></div>
+        <div id="u56_text" class="text ">
+          <p><a href="门诊病历.html">门诊病历</a></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u57" class="ax_default link_button">
+        <div id="u57_div" class=""></div>
+        <div id="u57_text" class="text ">
+          <p><a href="检查申请.html">检查申请</a></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u58" class="ax_default link_button">
+        <div id="u58_div" class=""></div>
+        <div id="u58_text" class="text ">
+          <p><a href="检验申请.html">检验申请</a></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u59" class="ax_default link_button">
+        <div id="u59_div" class=""></div>
+        <div id="u59_text" class="text ">
+          <p><a href="医生确诊.html">医生确诊</a></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u60" class="ax_default box_2">
+        <div id="u60_div" class=""></div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u61" class="ax_default label">
+        <div id="u61_div" class=""></div>
+        <div id="u61_text" class="text ">
+          <p><a>看诊结果</a></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u62" class="ax_default label">
+        <div id="u62_div" class=""></div>
+        <div id="u62_text" class="text ">
+          <p><span>主诉 : {{medical_record.readme}}</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u63" class="ax_default label">
+        <div id="u63_div" class=""></div>
+        <div id="u63_text" class="text ">
+          <p><span>现病史 : {{medical_record.present}}</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u64" class="ax_default label">
+        <div id="u64_div" class=""></div>
+        <div id="u64_text" class="text ">
+          <p><span>家族病史 : {{medical_record.home}}</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u65" class="ax_default label">
+        <div id="u65_div" class=""></div>
+        <div id="u65_text" class="text ">
+          <p><span>既往病史 :{{medical_record.history}}</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u66" class="ax_default label">
+        <div id="u66_div" class=""></div>
+        <div id="u66_text" class="text ">
+          <p><span>诊断结果 :{{medical_record.diagnosis}}</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (矩形) -->
+      <div id="u67" class="ax_default link_button">
+        <div id="u67_div" class=""></div>
+        <div id="u67_text" class="text ">
+          <p><a>看诊结果</a></p>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    let vm=new Vue({
+      el:'#base',
+      data:{
+        caseNumber:'',
+        id:'',
+        record:'',
+        register:{
+                employee:{
+                  realname:''
+                },
+                department:{
+                  deptName:''
+                },
+                registLevel:{
+                  registName:''
+                }
+              },
+        medical_record:{}
+      },
+      methods:{
+        keyupclick(){
+          axios.post('http://localhost:8092/register-queryCaseNumber',{
+            caseNumber:this.caseNumber
+          })
+          .then(response=>{
+            console.log(this.caseNumber);
+            console.log(response.data);
+            this.register=response.data;
+            this.id=this.register.id;
+          })
+          .catch(function(err){
+            console.log(err);
+          })
+          axios.post('http://localhost:8092/medical-record-queryrecord',{
+            caseNumber:this.caseNumber
+          })
+          .then(response=>{
+            console.log(this.caseNumber);
+            console.log(response.data);
+            this.medical_record=response.data;
+            
+          })
+          .catch(function(err){
+            console.log(err);
+          })
+
+        },
+      },
+      filters:{
+      str(value){
+        if(value==1 | value==4){
+          return "否"
+        }
+        if(value==2 |value==3){
+          return "是"
+        }
+      },
+      visitstate(value){
+        switch(value){
+          case 1:
+            return "已挂号";
+            break;
+          case 2:
+            return "医生接诊";
+            break;
+          case 3:
+            return "看诊结束";
+            break;
+          case 4:
+            return "已退号";
+            break;
+          default:
+            return "";
+            break;
+        }
+      }
+    }
+      
+    })
+  </script>
+</html>
